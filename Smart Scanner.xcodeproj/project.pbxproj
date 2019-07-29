@@ -8,20 +8,30 @@
 
 /* Begin PBXBuildFile section */
 		054483CE22D4C30B0083596D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054483CD22D4C30B0083596D /* AppDelegate.swift */; };
-		054483D022D4C30B0083596D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054483CF22D4C30B0083596D /* ViewController.swift */; };
-		054483D322D4C30B0083596D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 054483D122D4C30B0083596D /* Main.storyboard */; };
+		054483D022D4C30B0083596D /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054483CF22D4C30B0083596D /* HomeViewController.swift */; };
 		054483D522D4C30C0083596D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 054483D422D4C30C0083596D /* Assets.xcassets */; };
 		054483D822D4C30C0083596D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 054483D622D4C30C0083596D /* LaunchScreen.storyboard */; };
+		054483E122D4C8A10083596D /* ContactsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054483E022D4C8A10083596D /* ContactsService.swift */; };
+		0577C27122EEABF800D4FCB5 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0577C27022EEABF800D4FCB5 /* Theme.swift */; };
+		05825DFD22D5880B00598CF0 /* ContactsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05825DFC22D5880B00598CF0 /* ContactsViewController.swift */; };
+		05EB027222D61E05004806B9 /* tessdata in Resources */ = {isa = PBXBuildFile; fileRef = 05EB027122D61E05004806B9 /* tessdata */; };
+		BEE09A98534DD0188F13DFA8 /* Pods_Smart_Scanner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1808DE901104C642F4B08539 /* Pods_Smart_Scanner.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		054483CA22D4C30B0083596D /* Smart Scanner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Smart Scanner.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		054483CD22D4C30B0083596D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		054483CF22D4C30B0083596D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		054483D222D4C30B0083596D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		054483CF22D4C30B0083596D /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		054483D422D4C30C0083596D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		054483D722D4C30C0083596D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		054483D922D4C30C0083596D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		054483E022D4C8A10083596D /* ContactsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsService.swift; sourceTree = "<group>"; };
+		0577C27022EEABF800D4FCB5 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
+		05825DFC22D5880B00598CF0 /* ContactsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsViewController.swift; sourceTree = "<group>"; };
+		05EB027122D61E05004806B9 /* tessdata */ = {isa = PBXFileReference; lastKnownFileType = folder; path = tessdata; sourceTree = "<group>"; };
+		1808DE901104C642F4B08539 /* Pods_Smart_Scanner.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Smart_Scanner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		76341D1384C334F84A3D9EDF /* Pods-Smart Scanner.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Smart Scanner.release.xcconfig"; path = "Pods/Target Support Files/Pods-Smart Scanner/Pods-Smart Scanner.release.xcconfig"; sourceTree = "<group>"; };
+		B399A1F9834D9DC21FC93C07 /* Pods-Smart Scanner.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Smart Scanner.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Smart Scanner/Pods-Smart Scanner.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,6 +39,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BEE09A98534DD0188F13DFA8 /* Pods_Smart_Scanner.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -40,6 +51,8 @@
 			children = (
 				054483CC22D4C30B0083596D /* Smart Scanner */,
 				054483CB22D4C30B0083596D /* Products */,
+				DB434F8B038D8D709B4F8B10 /* Pods */,
+				B2BD513EB66911D52AD6D803 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -54,14 +67,66 @@
 		054483CC22D4C30B0083596D /* Smart Scanner */ = {
 			isa = PBXGroup;
 			children = (
-				054483CD22D4C30B0083596D /* AppDelegate.swift */,
-				054483CF22D4C30B0083596D /* ViewController.swift */,
-				054483D122D4C30B0083596D /* Main.storyboard */,
-				054483D422D4C30C0083596D /* Assets.xcassets */,
+				0577C26F22EEABDA00D4FCB5 /* Helper */,
+				0577C26E22EEABBC00D4FCB5 /* Application */,
+				0577C26D22EEA8F100D4FCB5 /* Controllers */,
+				05EB027122D61E05004806B9 /* tessdata */,
+				054483DF22D4C88F0083596D /* Services */,
 				054483D622D4C30C0083596D /* LaunchScreen.storyboard */,
-				054483D922D4C30C0083596D /* Info.plist */,
 			);
 			path = "Smart Scanner";
+			sourceTree = "<group>";
+		};
+		054483DF22D4C88F0083596D /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				054483E022D4C8A10083596D /* ContactsService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		0577C26D22EEA8F100D4FCB5 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				054483CF22D4C30B0083596D /* HomeViewController.swift */,
+				05825DFC22D5880B00598CF0 /* ContactsViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		0577C26E22EEABBC00D4FCB5 /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				054483CD22D4C30B0083596D /* AppDelegate.swift */,
+				054483D422D4C30C0083596D /* Assets.xcassets */,
+				054483D922D4C30C0083596D /* Info.plist */,
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
+		0577C26F22EEABDA00D4FCB5 /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				0577C27022EEABF800D4FCB5 /* Theme.swift */,
+			);
+			path = Helper;
+			sourceTree = "<group>";
+		};
+		B2BD513EB66911D52AD6D803 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1808DE901104C642F4B08539 /* Pods_Smart_Scanner.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		DB434F8B038D8D709B4F8B10 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				B399A1F9834D9DC21FC93C07 /* Pods-Smart Scanner.debug.xcconfig */,
+				76341D1384C334F84A3D9EDF /* Pods-Smart Scanner.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -71,9 +136,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 054483DC22D4C30C0083596D /* Build configuration list for PBXNativeTarget "Smart Scanner" */;
 			buildPhases = (
+				46950CA182E0DE442A306541 /* [CP] Check Pods Manifest.lock */,
 				054483C622D4C30B0083596D /* Sources */,
 				054483C722D4C30B0083596D /* Frameworks */,
 				054483C822D4C30B0083596D /* Resources */,
+				F91315086F341C0EB3284AFE /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -123,34 +190,80 @@
 			buildActionMask = 2147483647;
 			files = (
 				054483D822D4C30C0083596D /* LaunchScreen.storyboard in Resources */,
+				05EB027222D61E05004806B9 /* tessdata in Resources */,
 				054483D522D4C30C0083596D /* Assets.xcassets in Resources */,
-				054483D322D4C30B0083596D /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		46950CA182E0DE442A306541 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Smart Scanner-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F91315086F341C0EB3284AFE /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Smart Scanner/Pods-Smart Scanner-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
+				"${BUILT_PRODUCTS_DIR}/TesseractOCRiOS/TesseractOCR.framework",
+				"${BUILT_PRODUCTS_DIR}/WeScan/WeScan.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TesseractOCR.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/WeScan.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Smart Scanner/Pods-Smart Scanner-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		054483C622D4C30B0083596D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				054483D022D4C30B0083596D /* ViewController.swift in Sources */,
+				054483D022D4C30B0083596D /* HomeViewController.swift in Sources */,
+				05825DFD22D5880B00598CF0 /* ContactsViewController.swift in Sources */,
+				0577C27122EEABF800D4FCB5 /* Theme.swift in Sources */,
 				054483CE22D4C30B0083596D /* AppDelegate.swift in Sources */,
+				054483E122D4C8A10083596D /* ContactsService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		054483D122D4C30B0083596D /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				054483D222D4C30B0083596D /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		054483D622D4C30C0083596D /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -197,6 +310,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -258,6 +372,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_BITCODE = NO;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -280,11 +395,13 @@
 		};
 		054483DD22D4C30C0083596D /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B399A1F9834D9DC21FC93C07 /* Pods-Smart Scanner.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = W4G5T26BVL;
-				INFOPLIST_FILE = "Smart Scanner/Info.plist";
+				ENABLE_BITCODE = NO;
+				INFOPLIST_FILE = "$(SRCROOT)/Smart Scanner/Application/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -298,11 +415,13 @@
 		};
 		054483DE22D4C30C0083596D /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 76341D1384C334F84A3D9EDF /* Pods-Smart Scanner.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = W4G5T26BVL;
-				INFOPLIST_FILE = "Smart Scanner/Info.plist";
+				ENABLE_BITCODE = NO;
+				INFOPLIST_FILE = "$(SRCROOT)/Smart Scanner/Application/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

@@ -6,7 +6,7 @@
 //  Copyright © 2019 ISEM. All rights reserved.
 //
 
-import Foundation
+import UIKit
 import Contacts
 
 class ContactsService {
@@ -69,3 +69,5 @@ public struct Contact {
     var email: String
     let imageData: Data?
 }
+
+let mockContacts = [Contact.init(firstName: "Bilguun", lastName: "Batbold", company: "NUS", address: "Singapore", phone: "86063606", email: "bilguun132@gmail.com", imageData: #imageLiteral(resourceName: "namecard2").pngData()), Contact.init(firstName: "Bilguun", lastName: "Batbold", company: "NUS", address: "Singapore", phone: "86063606", email: "bilguun132@gmail.com", imageData: #imageLiteral(resourceName: "namecard1").pngData()), Contact.init(firstName: "Bilguun", lastName: "Batbold", company: "NUS", address: "Singapore", phone: "86063606", email: "bilguun132@gmail.com", imageData: #imageLiteral(resourceName: "namecard1").pngData()), Contact.init(firstName: "Bilguun", lastName: "Batbold", company: "NUS", address: "Singapore", phone: "86063606", email: "bilguun132@gmail.com", imageData: #imageLiteral(resourceName: "namecard1").pngData())]

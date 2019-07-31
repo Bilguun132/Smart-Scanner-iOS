@@ -3,17 +3,24 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		054483CE22D4C30B0083596D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054483CD22D4C30B0083596D /* AppDelegate.swift */; };
-		054483D022D4C30B0083596D /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054483CF22D4C30B0083596D /* HomeViewController.swift */; };
+		054483D022D4C30B0083596D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054483CF22D4C30B0083596D /* ViewController.swift */; };
 		054483D522D4C30C0083596D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 054483D422D4C30C0083596D /* Assets.xcassets */; };
 		054483D822D4C30C0083596D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 054483D622D4C30C0083596D /* LaunchScreen.storyboard */; };
 		054483E122D4C8A10083596D /* ContactsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054483E022D4C8A10083596D /* ContactsService.swift */; };
 		0577C27122EEABF800D4FCB5 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0577C27022EEABF800D4FCB5 /* Theme.swift */; };
 		05825DFD22D5880B00598CF0 /* ContactsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05825DFC22D5880B00598CF0 /* ContactsViewController.swift */; };
+		05A50A1222F0289E0007DBB5 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A50A1122F0289E0007DBB5 /* HomeViewController.swift */; };
+		05A50A1522F031FA0007DBB5 /* UICollectionView+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A50A1422F031FA0007DBB5 /* UICollectionView+Utils.swift */; };
+		05A50A1722F1356D0007DBB5 /* NewCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A50A1622F1356D0007DBB5 /* NewCardViewController.swift */; };
+		05A50A1A22F143050007DBB5 /* CardCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A50A1922F143050007DBB5 /* CardCollectionViewCell.swift */; };
+		05A50A1C22F160730007DBB5 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A50A1B22F160730007DBB5 /* Settings.swift */; };
+		05A50A1E22F161460007DBB5 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A50A1D22F161460007DBB5 /* SettingsViewController.swift */; };
+		05A50A2022F170EB0007DBB5 /* CardFieldTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A50A1F22F170EB0007DBB5 /* CardFieldTableViewCell.swift */; };
 		05EB027222D61E05004806B9 /* tessdata in Resources */ = {isa = PBXBuildFile; fileRef = 05EB027122D61E05004806B9 /* tessdata */; };
 		BEE09A98534DD0188F13DFA8 /* Pods_Smart_Scanner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1808DE901104C642F4B08539 /* Pods_Smart_Scanner.framework */; };
 /* End PBXBuildFile section */
@@ -21,13 +28,20 @@
 /* Begin PBXFileReference section */
 		054483CA22D4C30B0083596D /* Smart Scanner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Smart Scanner.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		054483CD22D4C30B0083596D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		054483CF22D4C30B0083596D /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		054483CF22D4C30B0083596D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		054483D422D4C30C0083596D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		054483D722D4C30C0083596D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		054483D922D4C30C0083596D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		054483E022D4C8A10083596D /* ContactsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsService.swift; sourceTree = "<group>"; };
 		0577C27022EEABF800D4FCB5 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		05825DFC22D5880B00598CF0 /* ContactsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsViewController.swift; sourceTree = "<group>"; };
+		05A50A1122F0289E0007DBB5 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		05A50A1422F031FA0007DBB5 /* UICollectionView+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Utils.swift"; sourceTree = "<group>"; };
+		05A50A1622F1356D0007DBB5 /* NewCardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewCardViewController.swift; sourceTree = "<group>"; };
+		05A50A1922F143050007DBB5 /* CardCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCollectionViewCell.swift; sourceTree = "<group>"; };
+		05A50A1B22F160730007DBB5 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
+		05A50A1D22F161460007DBB5 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		05A50A1F22F170EB0007DBB5 /* CardFieldTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardFieldTableViewCell.swift; sourceTree = "<group>"; };
 		05EB027122D61E05004806B9 /* tessdata */ = {isa = PBXFileReference; lastKnownFileType = folder; path = tessdata; sourceTree = "<group>"; };
 		1808DE901104C642F4B08539 /* Pods_Smart_Scanner.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Smart_Scanner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		76341D1384C334F84A3D9EDF /* Pods-Smart Scanner.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Smart Scanner.release.xcconfig"; path = "Pods/Target Support Files/Pods-Smart Scanner/Pods-Smart Scanner.release.xcconfig"; sourceTree = "<group>"; };
@@ -67,6 +81,9 @@
 		054483CC22D4C30B0083596D /* Smart Scanner */ = {
 			isa = PBXGroup;
 			children = (
+				05A50A2122F18CDF0007DBB5 /* Views */,
+				05A50A1822F142F30007DBB5 /* Cells */,
+				05A50A1322F031EE0007DBB5 /* Extensions */,
 				0577C26F22EEABDA00D4FCB5 /* Helper */,
 				0577C26E22EEABBC00D4FCB5 /* Application */,
 				0577C26D22EEA8F100D4FCB5 /* Controllers */,
@@ -88,8 +105,11 @@
 		0577C26D22EEA8F100D4FCB5 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				054483CF22D4C30B0083596D /* HomeViewController.swift */,
+				054483CF22D4C30B0083596D /* ViewController.swift */,
 				05825DFC22D5880B00598CF0 /* ContactsViewController.swift */,
+				05A50A1122F0289E0007DBB5 /* HomeViewController.swift */,
+				05A50A1622F1356D0007DBB5 /* NewCardViewController.swift */,
+				05A50A1D22F161460007DBB5 /* SettingsViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -108,8 +128,33 @@
 			isa = PBXGroup;
 			children = (
 				0577C27022EEABF800D4FCB5 /* Theme.swift */,
+				05A50A1B22F160730007DBB5 /* Settings.swift */,
 			);
 			path = Helper;
+			sourceTree = "<group>";
+		};
+		05A50A1322F031EE0007DBB5 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				05A50A1422F031FA0007DBB5 /* UICollectionView+Utils.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		05A50A1822F142F30007DBB5 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				05A50A1922F143050007DBB5 /* CardCollectionViewCell.swift */,
+				05A50A1F22F170EB0007DBB5 /* CardFieldTableViewCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		05A50A2122F18CDF0007DBB5 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		B2BD513EB66911D52AD6D803 /* Frameworks */ = {
@@ -226,24 +271,15 @@
 			files = (
 			);
 			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-Smart Scanner/Pods-Smart Scanner-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
-				"${BUILT_PRODUCTS_DIR}/TesseractOCRiOS/TesseractOCR.framework",
-				"${BUILT_PRODUCTS_DIR}/WeScan/WeScan.framework",
+				"${PODS_ROOT}/Target Support Files/Pods-Smart Scanner/Pods-Smart Scanner-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-			);
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TesseractOCR.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/WeScan.framework",
+				"${PODS_ROOT}/Target Support Files/Pods-Smart Scanner/Pods-Smart Scanner-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Smart Scanner/Pods-Smart Scanner-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Smart Scanner/Pods-Smart Scanner-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -253,11 +289,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				054483D022D4C30B0083596D /* HomeViewController.swift in Sources */,
+				05A50A2022F170EB0007DBB5 /* CardFieldTableViewCell.swift in Sources */,
+				054483D022D4C30B0083596D /* ViewController.swift in Sources */,
+				05A50A1722F1356D0007DBB5 /* NewCardViewController.swift in Sources */,
+				05A50A1E22F161460007DBB5 /* SettingsViewController.swift in Sources */,
 				05825DFD22D5880B00598CF0 /* ContactsViewController.swift in Sources */,
 				0577C27122EEABF800D4FCB5 /* Theme.swift in Sources */,
+				05A50A1C22F160730007DBB5 /* Settings.swift in Sources */,
 				054483CE22D4C30B0083596D /* AppDelegate.swift in Sources */,
 				054483E122D4C8A10083596D /* ContactsService.swift in Sources */,
+				05A50A1522F031FA0007DBB5 /* UICollectionView+Utils.swift in Sources */,
+				05A50A1222F0289E0007DBB5 /* HomeViewController.swift in Sources */,
+				05A50A1A22F143050007DBB5 /* CardCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

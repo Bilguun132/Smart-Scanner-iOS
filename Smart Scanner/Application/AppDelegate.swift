@@ -23,7 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         navController.navigationBar.isTranslucent = false
         window?.rootViewController = navController
         window?.makeKeyAndVisible()
-        
+        Theme.darkTheme()
         return true
     }
 

@@ -1,184 +1,160 @@
-import UIKit
-import TesseractOCR
-import WeScan
-import SVProgressHUD
+//
+//  HomeViewController.swift
+//  Smart Scanner
+//
+//  Created by Bilguun Batbold on 30/7/19.
+//  Copyright © 2019 ISEM. All rights reserved.
+//
 
-class HomeViewController: UIViewController, G8TesseractDelegate {
+import UIKit
+import WeScan
+
+class HomeViewController: UIViewController {
     
     // MARK: - Properties
-    
-    let operationQueue = OperationQueue()
-    
-    lazy var scannedImage: UIImageView = {
-        let scannedImage = UIImageView()
-        scannedImage.image = #imageLiteral(resourceName: "camera1")
-        scannedImage.contentMode = UIView.ContentMode.scaleAspectFill
-        scannedImage.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(scannedImage)
-        return scannedImage
-        
+    lazy var collectionView: UICollectionView = {
+        let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
+        layout.sectionInset = UIEdgeInsets(top: 20, left: 10, bottom: 10, right: 10)
+        layout.itemSize = CGSize(width: 90, height: 120)
+        let collectionView = UICollectionView(frame: self.view.frame, collectionViewLayout: layout)
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        collectionView.dataSource = self
+        collectionView.delegate = self
+        collectionView.register(CardCollectionViewCell.self, forCellWithReuseIdentifier: "cell")
+        collectionView.alwaysBounceVertical = true
+        return collectionView
     }()
     
-    lazy var ocrText: UILabel = {
-        let label = UILabel()
-        label.textAlignment = .center
-        label.text = ""
-        label.numberOfLines = 0
-        label.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(label)
-        return label
+    lazy var searchController: UISearchController = {
+        let controller = UISearchController(searchResultsController: nil)
+        controller.delegate = self
+        controller.searchBar.delegate = self
+        controller.hidesNavigationBarDuringPresentation = false
+        controller.dimsBackgroundDuringPresentation = true
+        controller.obscuresBackgroundDuringPresentation = false
+        controller.searchBar.placeholder = "Search name cards"
+        controller.searchBar.sizeToFit()
+        return controller
     }()
     
-    lazy var takePhotoButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("Scan Image", for: .normal)
-        button.backgroundColor = #colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1)
-        button.tintColor = .white
-        button.layer.cornerRadius = 8
-        button.addTarget(self, action: #selector(openCamera(sender:)), for: .touchUpInside)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(button)
-        return button
-    }()
     
-    lazy var createContactButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("Create Contact", for: .normal)
-        button.backgroundColor = #colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1)
-        button.tintColor = .white
-        button.layer.cornerRadius = 8
-        button.addTarget(self, action: #selector(createContact), for: .touchUpInside)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(button)
-        return button
-    }()
-    
-    var newContact: Contact?
-    
-    lazy internal var tesseract: G8Tesseract = {
-        let _tesseract = G8Tesseract(language: "eng")
-        _tesseract?.delegate = self
-        //_tesseract?.charWhitelist
-        //_tesseract?.charBlacklist
-        return _tesseract!
-    }()
+    private var nameCards = mockContacts
     
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
-        self.navigationItem.title = "Home"
         setupViews()
-        // Do any additional setup after loading the view, typically from a nib.
-        
+        setupConstraints()
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        UIView.animate(withDuration: 0.3) {
+            self.setupAppearance()
+        }
     }
     
-    private func setupViews() {
+    // MARK: - Appearance / Layouts
+    
+    func setupViews() {
+        collectionView.delegate = self
+        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationItem.largeTitleDisplayMode = .always
+        navigationItem.searchController = searchController
+        let navAddButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(showScanOptions))
+        navigationItem.rightBarButtonItem = navAddButton
+        let navSettingsButton = UIBarButtonItem(image: #imageLiteral(resourceName: "bar_icon_gear"), style: .plain, target: self, action: #selector(settingsButtonTap))
+        navigationItem.leftBarButtonItem = navSettingsButton
+    }
+    
+    func setupConstraints() {
         let guide = view.safeAreaLayoutGuide
-        // scanned image
-        scannedImage.leadingAnchor.constraint(equalTo: guide.leadingAnchor, constant: 8).isActive = true
-        scannedImage.trailingAnchor.constraint(equalTo: guide.trailingAnchor, constant: -8).isActive = true
-        scannedImage.topAnchor.constraint(equalTo: guide.topAnchor, constant: 16).isActive = true
-        scannedImage.heightAnchor.constraint(equalToConstant: 200).isActive = true
-
+        
+        view.addSubview(collectionView)
         NSLayoutConstraint.activate([
-            //ocr text
-            ocrText.leadingAnchor.constraint(equalTo: scannedImage.leadingAnchor),
-            ocrText.trailingAnchor.constraint(equalTo: scannedImage.trailingAnchor),
-            ocrText.topAnchor.constraint(equalTo: scannedImage.bottomAnchor, constant: 8),
-            ocrText.bottomAnchor.constraint(equalTo: takePhotoButton.topAnchor, constant: -8),
-            
-            //create contact button
-            createContactButton.widthAnchor.constraint(equalToConstant: 200),
-            createContactButton.heightAnchor.constraint(equalToConstant: 50),
-            createContactButton.bottomAnchor.constraint(equalTo: guide.bottomAnchor, constant: -16),
-            createContactButton.centerXAnchor.constraint(equalTo: guide.centerXAnchor),
-            
-            // take image button
-            takePhotoButton.widthAnchor.constraint(equalToConstant: 200),
-            takePhotoButton.bottomAnchor.constraint(equalTo: createContactButton.topAnchor, constant: -8),
-            takePhotoButton.centerXAnchor.constraint(equalTo: guide.centerXAnchor),
-            takePhotoButton.heightAnchor.constraint(equalToConstant: 50)
+            collectionView.topAnchor.constraint(equalTo: guide.topAnchor, constant: 16),
+            collectionView.leadingAnchor.constraint(equalTo: guide.leadingAnchor, constant: 8),
+            collectionView.trailingAnchor.constraint(equalTo: guide.trailingAnchor, constant: -8),
+            collectionView.bottomAnchor.constraint(equalTo: guide.bottomAnchor, constant: -16)
             ])
     }
     
-    @objc func openCamera(sender: Any) {
-        let scannerViewController = ImageScannerController()
-        scannerViewController.imageScannerDelegate = self
-        present(scannerViewController, animated: true)
+    func setupAppearance() {
+        view.backgroundColor = Theme.backgroundColor
+        navigationItem.title = "Name Cards"
+        navigationController?.navigationBar.barTintColor = Theme.backgroundColor
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: Theme.labelTextColor as Any]
+        navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: Theme.labelTextColor as Any]
+        navigationController?.navigationBar.barStyle = Theme.backgroundColor == UIColor.white ? UIBarStyle.default : UIBarStyle.black
+        navigationController?.navigationBar.tintColor = Theme.buttonTextColor
+        collectionView.backgroundColor = Theme.backgroundColor
+        collectionView.performBatchUpdates({
+            self.collectionView.reloadData()
+        }, completion: nil)
     }
     
-    @objc func createContact() {
-        let contactsVC = ContactsViewController()
-        contactsVC.newContact = newContact
-        self.navigationController?.pushViewController(contactsVC, animated: true)
-//        self.present(contactsVC, animated: true, completion: nil)
-        
+    
+    
+    // Buttons Tap
+    
+    @objc func settingsButtonTap() {
+        //        Theme.toggleTheme()
+        //        UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseInOut, animations: {
+        //            self.setupAppearance()
+        //        }, completion: nil)
+        let settingsVC = SettingsViewController()
+        let navVC = UINavigationController(rootViewController: settingsVC)
+        self.present(navVC, animated: true, completion: nil)
     }
     
-    func recognizeImageWithTesseract(image: UIImage) {
-        SVProgressHUD.show(withStatus: "Recognizing text...")
+    @objc func showScanOptions() {
+        let alert = UIAlertController(title: "Add from?", message: nil, preferredStyle: .actionSheet)
+        alert.addAction(UIAlertAction(title: "Camera", style: .default, handler: { [unowned self] action in
+            let scannerViewController = ImageScannerController()
+            scannerViewController.imageScannerDelegate = self
+            self.present(scannerViewController, animated: true)
+        }))
+        alert.addAction(UIAlertAction(title: "Photo Library", style: .default, handler: nil))
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (_) in
+            alert.dismiss(animated: true, completion: nil)
+        }))
+        alert.view.subviews.first?.subviews.first?.subviews.first?.backgroundColor = Theme.buttonBackgroundColor
+        alert.view.tintColor = Theme.buttonTextColor
+        self.present(alert, animated: true, completion: nil)
+    }
+}
+
+extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
-        self.tesseract.image = image
-        self.tesseract.recognize()
-        var scanResults = [String]()
-        
-        if let s = self.tesseract.recognizedText {
-            let detectorType: NSTextCheckingResult.CheckingType = [.address, .phoneNumber,
-                                                                   .link, .date]
-            newContact = Contact(firstName: "", lastName: "", company: "", address: "", phone: "", email: "", imageData: nil)
-            do {
-                let detector = try NSDataDetector(types: detectorType.rawValue)
-                let results = detector.matches(in: s, options: [], range:
-                    NSRange(location: 0, length: s.utf16.count))
-                
-                for result in results {
-                    if let range = Range(result.range, in: s) {
-                        let matchResult = s[range]
-                        scanResults.append("\(matchResult)")
-                        print("result: \(matchResult), range: \(result.range)")
-                        if result.resultType == .phoneNumber {
-                            newContact?.phone = "\(matchResult)"
-                        }
-                        if result.resultType == .address {
-                            if matchResult.contains("@") {
-                                newContact?.email = "\(matchResult)"
-                            }
-                            else {
-                                newContact?.address = "\(matchResult)"
-                            }
-                        }
-                    }
-                }
-                
-                newContact?.email = getEmails(text: s).count > 0 ? getEmails(text: s)[0] : ""
-                
-                ocrText.text = "Useful info extracted: \n \(scanResults)"
-                
-            } catch {
-                print("handle error")
-            }
-            SVProgressHUD.dismiss()
+        if nameCards.count == 0 {
+            self.collectionView.setEmptyMessage("No name cards to show. Press + to add name cards.")
+        }
+        else {
+            self.collectionView.restore()
         }
         
+        return nameCards.count
     }
     
-    func getEmails(text: String) -> [String] {
-        if let regex = try? NSRegularExpression(pattern: "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,6}", options: .caseInsensitive)
-        {
-            let string = text as NSString
-            
-            return regex.matches(in: text, options: [], range: NSRange(location: 0, length: string.length)).map {
-                string.substring(with: $0.range).replacingOccurrences(of: "", with: "").lowercased()
-            }
-        }
-        return []
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! CardCollectionViewCell
+        cell.configure(with: nameCards[indexPath.row])
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let flowayout = collectionViewLayout as? UICollectionViewFlowLayout
+        let space: CGFloat = (flowayout?.minimumInteritemSpacing ?? 0.0) + (flowayout?.sectionInset.left ?? 0.0) + (flowayout?.sectionInset.right ?? 0.0)
+        let size:CGFloat = Settings.cardsViewMode == .large ? (collectionView.frame.size.width - space) : ((collectionView.frame.size.width - space) / 2)
+        return CGSize(width: size, height: size * (2.125 / 3.370))
+    }
+}
+
+extension HomeViewController: UISearchControllerDelegate, UISearchBarDelegate, UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        
     }
 }
 
@@ -192,10 +168,13 @@ extension HomeViewController:  ImageScannerControllerDelegate {
     func imageScannerController(_ scanner: ImageScannerController, didFinishScanningWithResults results: ImageScannerResults) {
         // The user successfully scanned an image, which is available in the ImageScannerResults
         // You are responsible for dismissing the ImageScannerController
-        
-        scannedImage.image = results.scannedImage
-        scanner.dismiss(animated: true)
-        recognizeImageWithTesseract(image: results.scannedImage)
+        scanner.dismiss(animated: true) {
+            let newCardVC = NewCardViewController(image: results.scannedImage)
+            self.navigationController?.pushViewController(newCardVC, animated: true)
+        }
+        //        scannedImage.image = results.scannedImage
+        //        scanner.dismiss(animated: true)
+        //        recognizeImageWithTesseract(image: results.scannedImage)
     }
     
     func imageScannerControllerDidCancel(_ scanner: ImageScannerController) {

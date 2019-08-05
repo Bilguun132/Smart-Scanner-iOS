@@ -55,9 +55,9 @@ class CardCollectionViewCell: UICollectionViewCell {
             ])
     }
     
-    func configure(with model: Contact) {
-        contactName.text = model.firstName
-        if let imageData = model.imageData {
+    func configure(with model: NameCard) {
+        contactName.text = model.name
+        if let imageData = model.cardImage {
             let image = UIImage(data: imageData)
             scannedCard.image = image
         }

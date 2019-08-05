@@ -8,6 +8,7 @@
 
 import UIKit
 import WeScan
+import CoreData
 
 class HomeViewController: UIViewController {
     
@@ -38,7 +39,9 @@ class HomeViewController: UIViewController {
     }()
     
     
-    private var nameCards = mockContacts
+    private var nameCards = [NameCard]()
+    
+    private var filteredNameCards = [NameCard]()
     
     // MARK: - Lifecycle
     
@@ -46,6 +49,7 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
         setupViews()
         setupConstraints()
+        definesPresentationContext = true
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -89,11 +93,29 @@ class HomeViewController: UIViewController {
         navigationController?.navigationBar.barStyle = Theme.backgroundColor == UIColor.white ? UIBarStyle.default : UIBarStyle.black
         navigationController?.navigationBar.tintColor = Theme.buttonTextColor
         collectionView.backgroundColor = Theme.backgroundColor
-        collectionView.performBatchUpdates({
-            self.collectionView.reloadData()
-        }, completion: nil)
+        fetchNameCards()
     }
     
+    func fetchNameCards() {
+        guard let appDelegate =
+            UIApplication.shared.delegate as? AppDelegate else {
+                return
+        }
+        
+        let managedContext =
+            appDelegate.persistentContainer.viewContext
+        
+        let fetchRequest = NSFetchRequest<NameCard>(entityName: "NameCard")
+        
+        do {
+            let nameCards: [NameCard] = try managedContext.fetch(fetchRequest)
+            self.filteredNameCards = nameCards
+            self.nameCards = nameCards
+            self.collectionView.reloadData()
+        } catch {
+            print("Could not fetch.")
+        }
+    }
     
     
     // Buttons Tap
@@ -115,7 +137,13 @@ class HomeViewController: UIViewController {
             scannerViewController.imageScannerDelegate = self
             self.present(scannerViewController, animated: true)
         }))
-        alert.addAction(UIAlertAction(title: "Photo Library", style: .default, handler: nil))
+        alert.addAction(UIAlertAction(title: "Photo Library", style: .default, handler: { [unowned self] action in
+            let imagePicker = UIImagePickerController()
+            imagePicker.allowsEditing = true
+            imagePicker.sourceType = .photoLibrary
+            imagePicker.delegate = self
+            self.present(imagePicker, animated: true)
+        }))
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (_) in
             alert.dismiss(animated: true, completion: nil)
         }))
@@ -128,19 +156,19 @@ class HomeViewController: UIViewController {
 extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
-        if nameCards.count == 0 {
+        if filteredNameCards.count == 0 {
             self.collectionView.setEmptyMessage("No name cards to show. Press + to add name cards.")
         }
         else {
             self.collectionView.restore()
         }
         
-        return nameCards.count
+        return filteredNameCards.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! CardCollectionViewCell
-        cell.configure(with: nameCards[indexPath.row])
+        cell.configure(with: filteredNameCards[indexPath.row])
         return cell
     }
     
@@ -150,11 +178,34 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         let size:CGFloat = Settings.cardsViewMode == .large ? (collectionView.frame.size.width - space) : ((collectionView.frame.size.width - space) / 2)
         return CGSize(width: size, height: size * (2.125 / 3.370))
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let nameCard = filteredNameCards[indexPath.row]
+        let nameCardInfoVC = NameCardInfo(nameCard: nameCard)
+        self.navigationController?.pushViewController(nameCardInfoVC, animated: true)
+    }
 }
 
 extension HomeViewController: UISearchControllerDelegate, UISearchBarDelegate, UISearchResultsUpdating {
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        if searchBar.text?.count == 0 {
+            return
+        }
+        guard let searchText = searchBar.text?.lowercased() else {return}
+        self.filteredNameCards = nameCards.filter({ (nameCard) -> Bool in
+           return nameCard.name?.lowercased().contains(searchText) ?? false
+        })
+        collectionView.reloadData()
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        self.filteredNameCards = nameCards
+        collectionView.reloadData()
+    }
+    
     func updateSearchResults(for searchController: UISearchController) {
-        
+        print("searching...")
     }
 }
 
@@ -169,12 +220,10 @@ extension HomeViewController:  ImageScannerControllerDelegate {
         // The user successfully scanned an image, which is available in the ImageScannerResults
         // You are responsible for dismissing the ImageScannerController
         scanner.dismiss(animated: true) {
-            let newCardVC = NewCardViewController(image: results.scannedImage)
+//            let newCardVC = NewCardViewController(image: results.scannedImage)
+            let newCardVC = NewContactTableViewController(image: results.scannedImage)
             self.navigationController?.pushViewController(newCardVC, animated: true)
         }
-        //        scannedImage.image = results.scannedImage
-        //        scanner.dismiss(animated: true)
-        //        recognizeImageWithTesseract(image: results.scannedImage)
     }
     
     func imageScannerControllerDidCancel(_ scanner: ImageScannerController) {
@@ -182,5 +231,18 @@ extension HomeViewController:  ImageScannerControllerDelegate {
         // You are responsible for dismissing the ImageScannerController
         scanner.dismiss(animated: true)
     }
-    
+}
+
+extension HomeViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        dismiss(animated: true, completion: nil)
+    }
+
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        guard let image = info[.editedImage] as? UIImage else {return}
+        dismiss(animated: true) {
+            let newCardVC = NewContactTableViewController(image: image)
+            self.navigationController?.pushViewController(newCardVC, animated: true)
+        }
+    }
 }

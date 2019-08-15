@@ -72,9 +72,27 @@ class NewContactTableViewController: UITableViewController {
         let nameCard = NameCard(entity: entity, insertInto: managedContext)
         nameCard.name = selectedName
         nameCard.cardImage = image?.pngData()
-        nameCard.phone = usefulInfo[.phones]!.count > 0 ? usefulInfo[.phones]![0] : "None"
-        nameCard.address = usefulInfo[.addresses]!.count > 0 ? usefulInfo[.addresses]![0] : "None"
-        nameCard.email = usefulInfo[.emails]!.count > 0 ? usefulInfo[.emails]![0] : "None"
+        for phone in usefulInfo[.phones]! {
+            let phoneEntity = Phone(context: managedContext)
+            phoneEntity.phoneNumber = phone
+            nameCard.addToPhones(phoneEntity)
+        }
+        for address in usefulInfo[.addresses]! {
+            let addressEntity = Address(context: managedContext)
+            addressEntity.address = address
+            nameCard.addToAddresses(addressEntity)
+        }
+        for email in usefulInfo[.emails]! {
+            let emailEntity = Email(context: managedContext)
+            emailEntity.emailAddress = email
+            nameCard.addToEmails(emailEntity)
+        }
+        
+        for link in usefulInfo[.links]! {
+            let linkEntity = Link(context: managedContext)
+            linkEntity.link = link
+            nameCard.addToLinks(linkEntity)
+        }
         do {
             try managedContext.save()
             self.navigationController?.popViewController(animated: true)
@@ -83,7 +101,7 @@ class NewContactTableViewController: UITableViewController {
             print("Error: \(error.localizedDescription)")
         }
     }
-
+    
     // MARK: - Table view data source
     
     override func numberOfSections(in tableView: UITableView) -> Int {

@@ -44,7 +44,8 @@ class PickerTableViewCell: UITableViewCell, UIPickerViewDataSource, UIPickerView
         pickerView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 8).isActive = true
         pickerView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -8).isActive = true
         pickerView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8).isActive = true
-        pickerView.heightAnchor.constraint(equalToConstant: 100).isActive = true
+        pickerView.heightAnchor.constraint(equalToConstant: 70).isActive = true
+        
     }
     
     func configure(with pickerData: [String]) {

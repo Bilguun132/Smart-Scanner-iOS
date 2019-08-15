@@ -11,6 +11,7 @@
 		054483D522D4C30C0083596D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 054483D422D4C30C0083596D /* Assets.xcassets */; };
 		054483D822D4C30C0083596D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 054483D622D4C30C0083596D /* LaunchScreen.storyboard */; };
 		054483E122D4C8A10083596D /* ContactsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054483E022D4C8A10083596D /* ContactsService.swift */; };
+		055F63F422F9552B00B6D623 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 055F63F322F9552B00B6D623 /* CloudKit.framework */; };
 		0577C27122EEABF800D4FCB5 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0577C27022EEABF800D4FCB5 /* Theme.swift */; };
 		05825DFD22D5880B00598CF0 /* ContactsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05825DFC22D5880B00598CF0 /* ContactsViewController.swift */; };
 		05A50A1222F0289E0007DBB5 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A50A1122F0289E0007DBB5 /* HomeViewController.swift */; };
@@ -27,6 +28,7 @@
 		05A50A7922F41FB30007DBB5 /* NameCards.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 05A50A7722F41FB30007DBB5 /* NameCards.xcdatamodeld */; };
 		05A50A7B22F806630007DBB5 /* NameCardInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A50A7A22F806630007DBB5 /* NameCardInfo.swift */; };
 		05A50A7D22F810110007DBB5 /* DeleteButtonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A50A7C22F810110007DBB5 /* DeleteButtonTableViewCell.swift */; };
+		05AB248822F91F22000CECC4 /* SettingsNameCardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05AB248722F91F22000CECC4 /* SettingsNameCardTableViewCell.swift */; };
 		05EB027222D61E05004806B9 /* tessdata in Resources */ = {isa = PBXBuildFile; fileRef = 05EB027122D61E05004806B9 /* tessdata */; };
 		BEE09A98534DD0188F13DFA8 /* Pods_Smart_Scanner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1808DE901104C642F4B08539 /* Pods_Smart_Scanner.framework */; };
 /* End PBXBuildFile section */
@@ -38,6 +40,8 @@
 		054483D722D4C30C0083596D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		054483D922D4C30C0083596D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		054483E022D4C8A10083596D /* ContactsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsService.swift; sourceTree = "<group>"; };
+		055F63F222F9552600B6D623 /* Smart Scanner.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Smart Scanner.entitlements"; sourceTree = "<group>"; };
+		055F63F322F9552B00B6D623 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		0577C27022EEABF800D4FCB5 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		05825DFC22D5880B00598CF0 /* ContactsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsViewController.swift; sourceTree = "<group>"; };
 		05A50A1122F0289E0007DBB5 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -54,6 +58,7 @@
 		05A50A7822F41FB30007DBB5 /* NameCards.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = NameCards.xcdatamodel; sourceTree = "<group>"; };
 		05A50A7A22F806630007DBB5 /* NameCardInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameCardInfo.swift; sourceTree = "<group>"; };
 		05A50A7C22F810110007DBB5 /* DeleteButtonTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteButtonTableViewCell.swift; sourceTree = "<group>"; };
+		05AB248722F91F22000CECC4 /* SettingsNameCardTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsNameCardTableViewCell.swift; sourceTree = "<group>"; };
 		05EB027122D61E05004806B9 /* tessdata */ = {isa = PBXFileReference; lastKnownFileType = folder; path = tessdata; sourceTree = "<group>"; };
 		1808DE901104C642F4B08539 /* Pods_Smart_Scanner.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Smart_Scanner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		76341D1384C334F84A3D9EDF /* Pods-Smart Scanner.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Smart Scanner.release.xcconfig"; path = "Pods/Target Support Files/Pods-Smart Scanner/Pods-Smart Scanner.release.xcconfig"; sourceTree = "<group>"; };
@@ -66,6 +71,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BEE09A98534DD0188F13DFA8 /* Pods_Smart_Scanner.framework in Frameworks */,
+				055F63F422F9552B00B6D623 /* CloudKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -93,6 +99,7 @@
 		054483CC22D4C30B0083596D /* Smart Scanner */ = {
 			isa = PBXGroup;
 			children = (
+				055F63F222F9552600B6D623 /* Smart Scanner.entitlements */,
 				05A50A6F22F3DCEF0007DBB5 /* GoogleService-Info.plist */,
 				05A50A2122F18CDF0007DBB5 /* Views */,
 				05A50A1822F142F30007DBB5 /* Cells */,
@@ -164,6 +171,7 @@
 				05A50A7322F3E3090007DBB5 /* ImageTableViewCell.swift */,
 				05A50A7522F416160007DBB5 /* PickerTableViewCell.swift */,
 				05A50A7C22F810110007DBB5 /* DeleteButtonTableViewCell.swift */,
+				05AB248722F91F22000CECC4 /* SettingsNameCardTableViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -178,6 +186,7 @@
 		B2BD513EB66911D52AD6D803 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				055F63F322F9552B00B6D623 /* CloudKit.framework */,
 				1808DE901104C642F4B08539 /* Pods_Smart_Scanner.framework */,
 			);
 			name = Frameworks;
@@ -227,6 +236,14 @@
 				TargetAttributes = {
 					054483C922D4C30B0083596D = {
 						CreatedOnToolsVersion = 10.2.1;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+							com.apple.iCloud = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -327,6 +344,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				05A50A2022F170EB0007DBB5 /* CardFieldTableViewCell.swift in Sources */,
+				05AB248822F91F22000CECC4 /* SettingsNameCardTableViewCell.swift in Sources */,
 				05A50A6E22F3D7440007DBB5 /* NewContactTableViewController.swift in Sources */,
 				05A50A7222F3DE7F0007DBB5 /* TextRecognizer.swift in Sources */,
 				05A50A1E22F161460007DBB5 /* SettingsViewController.swift in Sources */,
@@ -483,6 +501,7 @@
 			baseConfigurationReference = B399A1F9834D9DC21FC93C07 /* Pods-Smart Scanner.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "Smart Scanner/Smart Scanner.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = W4G5T26BVL;
 				ENABLE_BITCODE = NO;
@@ -503,6 +522,7 @@
 			baseConfigurationReference = 76341D1384C334F84A3D9EDF /* Pods-Smart Scanner.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "Smart Scanner/Smart Scanner.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = W4G5T26BVL;
 				ENABLE_BITCODE = NO;

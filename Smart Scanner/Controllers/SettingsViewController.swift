@@ -7,15 +7,14 @@
 //
 
 import UIKit
+import CloudKit
 
 class SettingsViewController: UIViewController {
     
     // MARK: - Properties
     
-    //    lazy var colorSwitch: UISwitch = {
-    //
-    //    }()
-    //
+    private var recordId: CKRecord.ID?
+    private var name = "Your Name"
     
     lazy var tableView: UITableView = {
         let table = UITableView()
@@ -63,8 +62,9 @@ class SettingsViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-    func setupViews() {
+    private func setupViews() {
         view.addSubview(tableView)
+        tableView.register(SettingsNameCardTableViewCell.self, forCellReuseIdentifier: "nameCardCell")
         let guide = view.safeAreaLayoutGuide
         colorSwitchCell.textLabel?.text = "Dark Mode"
         colorSwitchCell.accessoryView = colorSwitch
@@ -82,7 +82,7 @@ class SettingsViewController: UIViewController {
             ])
     }
     
-    func setupAppearances() {
+    private func setupAppearances() {
         view.backgroundColor = Theme.backgroundColor
         navigationItem.title = "Settings"
         navigationController?.navigationBar.barTintColor = Theme.backgroundColor
@@ -99,7 +99,44 @@ class SettingsViewController: UIViewController {
         cardViewCell.textLabel?.textColor = Theme.labelTextColor
         cardViewCell.backgroundColor = Theme.backgroundColor
     }
+
+    private func getCloudKitId() {
+        print("Getting cloud kit data")
+        let container = CKContainer.default()
+        container.requestApplicationPermission(.userDiscoverability) { (status, error) in
+            container.fetchUserRecordID { (recordId, error) in
+                if error != nil {
+                    DispatchQueue.main.async {
+                        self.displayDefaultAlert(with: error?.localizedDescription ?? "We don't know what happened...")
+                    }
+                }
+                else {
+                    self.recordId = recordId
+                    guard let recordId = recordId else {return}
+                    container.discoverUserIdentity(withUserRecordID: recordId, completionHandler: { (identity, error) in
+                        if error != nil {
+                            DispatchQueue.main.async {
+                                self.displayDefaultAlert(with: error?.localizedDescription ?? "We don't know what happened...")
+                            }
+                        }
+                        else {
+                            guard let nameComponents = identity?.nameComponents else {return}
+                            self.name = "\(nameComponents.givenName ?? "") \(nameComponents.familyName ?? "")"
+                            DispatchQueue.main.async {
+                                self.tableView.reloadData()
+                            }
+                        }
+                    })
+                }
+            }
+        }
+    }
     
+    private func displayDefaultAlert(with message: String) {
+        let alert = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+        present(alert, animated: true)
+    }
     
     // MARK: - Buttons
     
@@ -109,7 +146,7 @@ class SettingsViewController: UIViewController {
     
     @objc func toggleTheme() {
         Theme.toggleTheme()
-        UIView.animate(withDuration: 0.3) {
+        UIView.animate(withDuration: 0.1) {
             self.setupAppearances()
             self.tableView.reloadData()
         }
@@ -123,48 +160,68 @@ class SettingsViewController: UIViewController {
             Settings.cardsViewMode = .compact
         }
     }
+
 }
 
 extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        return 2
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2
+        switch section {
+        case 0: return 1
+        case 1: return 2
+        default: fatalError("Unknown section")
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch(indexPath.section) {
         case 0:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "nameCardCell", for: indexPath) as! SettingsNameCardTableViewCell
+            cell.configure(with: name, and: nil)
+            return cell
+        case 1:
             switch(indexPath.row) {
             case 0: return self.colorSwitchCell
             case 1: return self.cardViewCell// section 0, row 0 is the first name
             default:
                 fatalError("Unknown row in section 0")
             }
-        case 1:
-            switch(indexPath.row) {
-            case 0: return self.colorSwitchCell
-            default:
-                fatalError("Unknown row in section 0")
-            }
         default: fatalError("Unknown section")
         }
     }
     
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let view = UIView()
-        view.backgroundColor = Theme.backgroundColor
-        view.tintColor = Theme.labelTextColor
-        return view
+    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        if let headerView = view as? UITableViewHeaderFooterView {
+            headerView.contentView.backgroundColor = .clear
+            headerView.backgroundView?.backgroundColor = .clear
+            headerView.textLabel?.textColor = Theme.labelTextColor?.withAlphaComponent(0.8)
+            headerView.textLabel?.font = UIFont.systemFont(ofSize: 14, weight: .light)
+        }
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         switch(section) {
-        case 0: return "SETTINGS"
+        case 0: return ""
+        case 1: return "SETTINGS"
         default: fatalError("Unknown section")
         }
     }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if indexPath.section == 0 {
+            return 100
+        }
+        return 50
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.section == 0 {
+            getCloudKitId()
+        }
+    }
 }
+

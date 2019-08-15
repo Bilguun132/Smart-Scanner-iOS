@@ -50,7 +50,16 @@ class NameCardInfo: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        switch section {
+        case 0: return 1
+        case 1: return 1
+        case 2: return (nameCard.links?.allObjects as! [Link]).count
+        case 3: return (nameCard.emails?.allObjects as! [Email]).count
+        case 4: return (nameCard.addresses?.allObjects as! [Address]).count
+        case 5: return (nameCard.phones?.allObjects as! [Phone]).count
+        case 6: return 1
+        default: fatalError()
+        }
     }
     
     override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
@@ -99,13 +108,13 @@ class NameCardInfo: UITableViewController {
         case 1:
             cell.textLabel?.text = nameCard.name
         case 2:
-            cell.textLabel?.text = nameCard.email
+            cell.textLabel?.text = (nameCard.links?.allObjects as! [Link])[indexPath.row].link
         case 3:
-            cell.textLabel?.text = nameCard.email
+            cell.textLabel?.text = (nameCard.emails?.allObjects as! [Email])[indexPath.row].emailAddress
         case 4:
-            cell.textLabel?.text = nameCard.address
+            cell.textLabel?.text = (nameCard.addresses?.allObjects as! [Address])[indexPath.row].address
         case 5:
-            cell.textLabel?.text = nameCard.phone
+            cell.textLabel?.text = (nameCard.phones?.allObjects as! [Phone])[indexPath.row].phoneNumber
         case 6:
             let deleteCell = tableView.dequeueReusableCell(withIdentifier: "deleteCell", for: indexPath) as! DeleteButtonTableViewCell
             deleteCell.deleteButton.addTarget(self, action: #selector(deleteNameCard), for: .touchUpInside)

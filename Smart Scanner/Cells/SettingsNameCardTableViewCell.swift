@@ -24,7 +24,7 @@ class SettingsNameCardTableViewCell: UITableViewCell {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.systemFont(ofSize: 12, weight: .regular)
         label.textColor = Theme.labelTextColor?.withAlphaComponent(0.8)
-        label.text = "Scan your name card to be able to connect with others easily."
+        label.text = "Tap to register to be able to save your name cards securely on the cloud and share accross your devices."
         label.numberOfLines = 0
         return label
     }()
@@ -79,7 +79,7 @@ class SettingsNameCardTableViewCell: UITableViewCell {
     }
     
     func configure(with name: String?, and image: UIImage?) {
-        nameLabel.text = name ?? "Your Name"
+        nameLabel.text = name ?? "Not Registered"
         cardImage.image = image ?? UIImage(named: "empty_namecard")
         nameLabel.textColor = Theme.labelTextColor
         detailLabel.textColor = Theme.labelTextColor?.withAlphaComponent(0.8)

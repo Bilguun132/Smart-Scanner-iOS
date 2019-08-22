@@ -29,6 +29,9 @@
 		05A50A7B22F806630007DBB5 /* NameCardInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A50A7A22F806630007DBB5 /* NameCardInfo.swift */; };
 		05A50A7D22F810110007DBB5 /* DeleteButtonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A50A7C22F810110007DBB5 /* DeleteButtonTableViewCell.swift */; };
 		05AB248822F91F22000CECC4 /* SettingsNameCardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05AB248722F91F22000CECC4 /* SettingsNameCardTableViewCell.swift */; };
+		05CCAA9A230514F1002814F6 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05CCAA99230514F1002814F6 /* APIService.swift */; };
+		05CCAA9C2305166B002814F6 /* URLSession+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05CCAA9B2305166B002814F6 /* URLSession+Utils.swift */; };
+		05CCAA9F230519FD002814F6 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05CCAA9E230519FD002814F6 /* User.swift */; };
 		05EB027222D61E05004806B9 /* tessdata in Resources */ = {isa = PBXBuildFile; fileRef = 05EB027122D61E05004806B9 /* tessdata */; };
 		BEE09A98534DD0188F13DFA8 /* Pods_Smart_Scanner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1808DE901104C642F4B08539 /* Pods_Smart_Scanner.framework */; };
 /* End PBXBuildFile section */
@@ -59,6 +62,9 @@
 		05A50A7A22F806630007DBB5 /* NameCardInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameCardInfo.swift; sourceTree = "<group>"; };
 		05A50A7C22F810110007DBB5 /* DeleteButtonTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteButtonTableViewCell.swift; sourceTree = "<group>"; };
 		05AB248722F91F22000CECC4 /* SettingsNameCardTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsNameCardTableViewCell.swift; sourceTree = "<group>"; };
+		05CCAA99230514F1002814F6 /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
+		05CCAA9B2305166B002814F6 /* URLSession+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLSession+Utils.swift"; sourceTree = "<group>"; };
+		05CCAA9E230519FD002814F6 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		05EB027122D61E05004806B9 /* tessdata */ = {isa = PBXFileReference; lastKnownFileType = folder; path = tessdata; sourceTree = "<group>"; };
 		1808DE901104C642F4B08539 /* Pods_Smart_Scanner.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Smart_Scanner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		76341D1384C334F84A3D9EDF /* Pods-Smart Scanner.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Smart Scanner.release.xcconfig"; path = "Pods/Target Support Files/Pods-Smart Scanner/Pods-Smart Scanner.release.xcconfig"; sourceTree = "<group>"; };
@@ -99,6 +105,7 @@
 		054483CC22D4C30B0083596D /* Smart Scanner */ = {
 			isa = PBXGroup;
 			children = (
+				05CCAA9D230519E9002814F6 /* Models */,
 				055F63F222F9552600B6D623 /* Smart Scanner.entitlements */,
 				05A50A6F22F3DCEF0007DBB5 /* GoogleService-Info.plist */,
 				05A50A2122F18CDF0007DBB5 /* Views */,
@@ -119,6 +126,7 @@
 			children = (
 				054483E022D4C8A10083596D /* ContactsService.swift */,
 				05A50A7122F3DE7F0007DBB5 /* TextRecognizer.swift */,
+				05CCAA99230514F1002814F6 /* APIService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -159,6 +167,7 @@
 			isa = PBXGroup;
 			children = (
 				05A50A1422F031FA0007DBB5 /* UICollectionView+Utils.swift */,
+				05CCAA9B2305166B002814F6 /* URLSession+Utils.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -181,6 +190,14 @@
 			children = (
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		05CCAA9D230519E9002814F6 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				05CCAA9E230519FD002814F6 /* User.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		B2BD513EB66911D52AD6D803 /* Frameworks */ = {
@@ -344,8 +361,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				05A50A2022F170EB0007DBB5 /* CardFieldTableViewCell.swift in Sources */,
+				05CCAA9A230514F1002814F6 /* APIService.swift in Sources */,
 				05AB248822F91F22000CECC4 /* SettingsNameCardTableViewCell.swift in Sources */,
 				05A50A6E22F3D7440007DBB5 /* NewContactTableViewController.swift in Sources */,
+				05CCAA9C2305166B002814F6 /* URLSession+Utils.swift in Sources */,
 				05A50A7222F3DE7F0007DBB5 /* TextRecognizer.swift in Sources */,
 				05A50A1E22F161460007DBB5 /* SettingsViewController.swift in Sources */,
 				05A50A7B22F806630007DBB5 /* NameCardInfo.swift in Sources */,
@@ -361,6 +380,7 @@
 				05A50A1222F0289E0007DBB5 /* HomeViewController.swift in Sources */,
 				05A50A1A22F143050007DBB5 /* CardCollectionViewCell.swift in Sources */,
 				05A50A7D22F810110007DBB5 /* DeleteButtonTableViewCell.swift in Sources */,
+				05CCAA9F230519FD002814F6 /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -506,6 +526,7 @@
 				DEVELOPMENT_TEAM = W4G5T26BVL;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/Smart Scanner/Application/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -513,7 +534,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "sg.edu.nus.isem.Smart-Scanner";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -527,6 +548,7 @@
 				DEVELOPMENT_TEAM = W4G5T26BVL;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/Smart Scanner/Application/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -534,7 +556,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "sg.edu.nus.isem.Smart-Scanner";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

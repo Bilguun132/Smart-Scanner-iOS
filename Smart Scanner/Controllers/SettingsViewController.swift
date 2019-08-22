@@ -14,7 +14,7 @@ class SettingsViewController: UIViewController {
     // MARK: - Properties
     
     private var recordId: CKRecord.ID?
-    private var name = "Your Name"
+    private var name = "Not Registered"
     
     lazy var tableView: UITableView = {
         let table = UITableView()
@@ -220,7 +220,7 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == 0 {
-            getCloudKitId()
+//            getCloudKitId()
         }
     }
 }
